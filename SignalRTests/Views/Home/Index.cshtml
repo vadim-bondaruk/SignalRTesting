@@ -4,6 +4,7 @@
 }
 
 <h2>Index</h2>
+<link href="~/Content/Popup.css" rel="stylesheet" />
 <hr />
 
 <input type="text" id="text" />
@@ -18,15 +19,28 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
 <script src="~/signalr/hubs"></script>
-
+<script>
+    $(document).ready(function(){
+        //Скрыть PopUp при загрузке страницы
+        PopUpHide();
+    });
+    //Функция отображения PopUp
+    function PopUpShow(){
+        $("#popup1").show();
+    }
+    //Функция скрытия PopUp
+    function PopUpHide(){
+        $("#popup1").hide();
+    }
+</script>
 <script>
     $(function () {
 
         hub = $.connection.myHub;
 
         hub.client.hello = function (message) {
-
-            $("#ul").append('<li>' + message + '</li>');
+            $("#popup_message").append(message);
+            $("#popup1").show();
         }
 
         $.connection.hub.start().done(function () {
@@ -40,3 +54,16 @@
     </script>
 
     }
+@section popup
+{
+<div class="b-container">
+    Sample Text
+    <a href="javascript:PopUpShow()">Show popup</a>
+</div>
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+        <div id="popup_message"></div>        
+        <button id="popup_close" onclick="javascript:PopUpHide()">Закрыть</button>
+    </div>
+</div>
+}
