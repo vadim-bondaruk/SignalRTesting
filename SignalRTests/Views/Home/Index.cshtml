@@ -11,47 +11,62 @@
 <button id="button">Send</button>
 <br />
 <hr />
+<input type="button" id="async" value="Async" />
 <ul id="ul"></ul>
 
 @section scripts
 {
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
-<script src="~/signalr/hubs"></script>
-<script>
-    $(function () {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
 
-        $("#popup_close").click(function () {
-            $("#user_popup").hide();
-        });
 
-        hub = $.connection.myHub;
+            var link = '@Url.Action("SendEmail", "Home", new {s = "text", id = "id_holder"}, Request.Url.Scheme)';
+            var link2 = '@Url.Action("Edit", "Manage", new { area = "User", Id = "id_holder" }, Request.Url.Scheme)';
 
-        hub.client.hello = function (message) {
-            $("#popup_message").empty().append(message);
-            $("#user_popup").show();
-        }
+            $("#popup_close").click(function () {
+                $("#user_popup").hide();
+            });
 
-        $.connection.hub.start().done(function () {
+            hub = $.connection.myHub;
 
-            $('#button').click(function () {
-               
-                hub.server.hello($("#text").val());
+            hub.client.hello = function (message) {
+                $("#popup_message").empty().append(message);
+                $("#user_popup").show();
+            }
+
+            $.connection.hub.start().done(function () {
+
+                var connectionID = $.connection.hub.id;
+
+                $("#async").click(function () {
+
+                    $.ajax({
+                        url:link.replace("id_holder", connectionID),
+                        type: "Get"
+                });
+            });
+
+                //$('#button').click(function () {
+
+                //    hub.server.hello($("#text").val());
+                //});
             });
         });
-    });
     </script>
 }
 @section popup
 {
-<div class="popup" id="user_popup" style="display:none">
-    <div class="popup-content">
-        <div class="popup_message_container">
-            <div id="popup_message"></div> 
-        </div>
-        <div class="popup_button">
-            <button id="popup_close">Закрыть</button>
-        </div>      
-    </div> 
-</div>
+    <div class="popup" id="user_popup" style="display:none">
+        <div class="popup-content">
+            <div class="popup_message_container">
+                <div id="popup_message"></div> 
+            </div>
+            <div class="popup_button">
+                <button id="popup_close">Закрыть</button>
+            </div>      
+        </div> 
+    </div>
 }

@@ -15,8 +15,8 @@ namespace SignalRTests
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{message}/{id}",
+                defaults: new { controller = "Home", action = "Index", message = UrlParameter.Optional, id= UrlParameter.Optional }
             );
         }
     }

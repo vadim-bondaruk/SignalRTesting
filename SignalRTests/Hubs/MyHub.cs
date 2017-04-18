@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNet.SignalR;
 
 namespace SignalRTests.Hubs
 {
@@ -6,7 +7,8 @@ namespace SignalRTests.Hubs
     {
         public void Hello(string message)
         {
-            Clients.Caller.hello(message+ " "+ "C#");
+            Clients.Client(Context.ConnectionId).hello(message+ " "+ "C#");
         }
+        
     }
 }
