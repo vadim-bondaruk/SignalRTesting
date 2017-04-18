@@ -24,10 +24,10 @@ namespace SignalRTests.Controllers
         }
 
         [HttpGet]
-        public void SendEmail(string s, string id)
+        public void SendEmail(string message, string id)
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
-            context.Clients.Client(id).hello(s+" "+"C#");
+            context.Clients.Client(id).hello(message+" "+"C#");
             
         }
     }

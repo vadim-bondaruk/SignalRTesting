@@ -13,7 +13,7 @@
 <hr />
 <input type="button" id="async" value="Async" />
 <ul id="ul"></ul>
-
+@Url.Action("SendEmail", "Home", new { message = "text", id = "id_holder" }, Request.Url.Scheme)
 @section scripts
 {
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -23,8 +23,8 @@
         $(function () {
 
 
-            var link = '@Url.Action("SendEmail", "Home", new {s = "text", id = "id_holder"}, Request.Url.Scheme)';
-            var link2 = '@Url.Action("Edit", "Manage", new { area = "User", Id = "id_holder" }, Request.Url.Scheme)';
+
+
 
             $("#popup_close").click(function () {
                 $("#user_popup").hide();
@@ -40,6 +40,7 @@
             $.connection.hub.start().done(function () {
 
                 var connectionID = $.connection.hub.id;
+                var link = "@Url.Action("SendEmail", "Home", new {message ="text", id ="id_holder"}, Request.Url.Scheme)";
 
                 $("#async").click(function () {
 
