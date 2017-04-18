@@ -30,7 +30,7 @@
     }
     //Функция скрытия PopUp
     function PopUpHide(){
-        $("#popup1").hide();
+        $("#user_popup").hide();
     }
 </script>
 <script>
@@ -39,8 +39,8 @@
         hub = $.connection.myHub;
 
         hub.client.hello = function (message) {
-            $("#popup_message").append(message);
-            $("#popup1").show();
+            $("#popup_message").empty().append(message);
+            $("#user_popup").show();
         }
 
         $.connection.hub.start().done(function () {
@@ -56,14 +56,18 @@
     }
 @section popup
 {
-<div class="b-container">
-    Sample Text
-    <a href="javascript:PopUpShow()">Show popup</a>
-</div>
-<div class="b-popup" id="popup1">
-    <div class="b-popup-content">
-        <div id="popup_message"></div>        
-        <button id="popup_close" onclick="javascript:PopUpHide()">Закрыть</button>
+<div class="popup" id="user_popup" style="display:none">
+    <div class="popup-content">
+        <div class="popup_message_container">
+        <div id="popup_message"></div> 
+            </div>
+        <div class="popup_button">
+            <button id="popup_close" onclick="javascript:PopUpHide()">Закрыть</button>
+        </div>      
+        
     </div>
+    
+       
+    
 </div>
 }

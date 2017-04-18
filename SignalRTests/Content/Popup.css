@@ -1,14 +1,4 @@
-﻿.b-container{
-    width:400px;
-    height:300px;
-    background-color: #ccc;
-    margin:0px auto;
-    padding:10px;
-    font-size:30px;
-    color: #fff;
-
-}
-.b-popup{
+﻿.popup{
     width:100%;
     min-height:100%;
     background-color: rgba(0,0,0,0.5);
@@ -20,10 +10,10 @@
     align-items: center;
     justify-content: center;
 }
-.b-popup .b-popup-content{
+.popup .popup-content{
     margin:40px auto 0px auto;
-    width:300px;
-    height: 120px;
+    width:400px;
+    height: 220px;
     padding:10px;
     background-color: #c5c5c5;
     border-radius:5px;
@@ -35,8 +25,27 @@
 
 }
 #popup_message{
-        width:300px;
-    height: 100px;
-    overflow-y: scroll;
+    padding: 5px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin:auto;
+    width:380px;
+    height: auto;
+    max-height: 160px;
+    overflow-y: auto;
+    text-align: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: central;
 }
 
+.popup_button{
+    margin-top:5px;
+}
+.popup_message_container{
+    height: 180px;
+    display: flex;
+}
