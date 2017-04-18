@@ -6,7 +6,7 @@ namespace SignalRTests.Hubs
     {
         public void Hello(string message)
         {
-            Clients.All.hello(message);
+            Clients.Caller.hello(message+ " "+ "C#");
         }
     }
 }

@@ -14,27 +14,16 @@
 <ul id="ul"></ul>
 
 @section scripts
-    {
-        
+{
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.signalR-2.1.2.js"></script>
 <script src="~/signalr/hubs"></script>
 <script>
-    $(document).ready(function(){
-        //Скрыть PopUp при загрузке страницы
-        PopUpHide();
-    });
-    //Функция отображения PopUp
-    function PopUpShow(){
-        $("#popup1").show();
-    }
-    //Функция скрытия PopUp
-    function PopUpHide(){
-        $("#user_popup").hide();
-    }
-</script>
-<script>
     $(function () {
+
+        $("#popup_close").click(function () {
+            $("#user_popup").hide();
+        });
 
         hub = $.connection.myHub;
 
@@ -52,22 +41,17 @@
         });
     });
     </script>
-
-    }
+}
 @section popup
 {
 <div class="popup" id="user_popup" style="display:none">
     <div class="popup-content">
         <div class="popup_message_container">
-        <div id="popup_message"></div> 
-            </div>
+            <div id="popup_message"></div> 
+        </div>
         <div class="popup_button">
-            <button id="popup_close" onclick="javascript:PopUpHide()">Закрыть</button>
+            <button id="popup_close">Закрыть</button>
         </div>      
-        
-    </div>
-    
-       
-    
+    </div> 
 </div>
 }
